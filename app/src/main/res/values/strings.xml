@@ -1,0 +1,13 @@
+<resources>
+    <string name="app_name">Assistant Alarm</string>
+    <string name="action_settings">Settings</string>
+
+    <string name="btn_start"> Start </string>
+    <string name="btn_stop"> Stop </string>
+
+    <!-- From MyConstraints class -->
+    <string name="hourConstraint">time_hour</string>
+    <string name="minuteConstraint">time_minute</string>
+    <string name="pickerConstraint">time_picker</string>
+    <string name="title_activity_main2">Main2Activity</string>
+</resources>
