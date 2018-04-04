@@ -3,7 +3,11 @@ package edu.rit.cxc9401.assistantalarm;
 import android.app.Activity;
 import android.app.AlarmManager;
 import android.app.PendingIntent;
+import android.app.SearchManager;
 import android.content.Intent;
+import android.media.Ringtone;
+import android.media.RingtoneManager;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -76,5 +80,27 @@ public class AlarmActivity extends AppCompatActivity {
 
     public void setAlarmText(String alarmText) {
         alarmTextView.setText(alarmText);
+    }
+
+    public void dismissAlarmUI(View view) {
+        try {
+            AlarmReceiver.ringtone.stop();
+            Log.d("Firing Button", "dismissAlarmUI: Should be dissmissing alarm");
+        } catch (Exception e) {
+            Log.d("Stopping the alarm failed", e.toString());
+        }
+
+        String command = "Good Morning";
+//        Intent intent2 = new Intent(Intent.EXTRA_ASSIST_CONTEXT)
+//        Intent intent = new Intent(Intent.ACTION_VOICE_COMMAND);
+        Intent intent = new Intent(Intent.ACTION_SEARCH);
+
+//        Intent intent = new Intent(Intent.ACTION_WEB_SEARCH);
+//        intent.setClassName("com.google.android.googlequicksearchbox", "com.google.android.googlequicksearchbox.SearchActivity");
+        intent.putExtra(SearchManager.QUERY, command);
+        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK); //necessary if launching from Service
+        startActivity(intent);
+
+//        startActivity(new Intent(Intent.ACTION_VOICE_COMMAND).setFlags(Intent.FLAG_ACTIVITY_NEW_TASK));
     }
 }
